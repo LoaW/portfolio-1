@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Xavier Brigode – Web designer & développeur front-end</title>
+<meta name="description" content="Xavier Brigode conçoit et développe des sites pour les artisans, indépendants et PME du Brabant wallon et de Bruxelles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#FBF8F2;--panel:#F1ECE2;--card:#FFFFFF;--ink:#1A1714;--muted:#5E574E;--line:#D8D1C4;--accent:#B23A1C;--accent-ink:#FFFFFF;--warm:#F6D9C8;--inv:#1A1714;--inv-ink:#F2EDE4;
+  --sans:'Space Grotesk','Helvetica Neue',Arial,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;color-scheme:light;
+}
+:root[data-theme="dark"]{--bg:#14110F;--panel:#1B1815;--card:#221E1A;--ink:#F2EDE4;--muted:#B0A79A;--line:#34302B;--accent:#EC6D4E;--accent-ink:#14110F;--warm:#4A2A20;--inv:#F2EDE4;--inv-ink:#14110F;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:66rem;margin:0 auto;padding:0 1.25rem}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.logo{font-weight:700;text-decoration:none;font-size:1.1rem}
+nav{display:flex;align-items:center;gap:1.4rem}
+nav a{text-decoration:none;color:var(--muted);font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+nav a:hover{color:var(--ink)}
+@media(max-width:600px){nav a:not(.keep){display:none}}
+.theme{width:2.4rem;height:2.4rem;padding:0;display:inline-grid;place-items:center;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:50%;cursor:pointer}
+.theme:hover{color:var(--ink)}
+.theme svg{width:1.1rem;height:1.1rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{margin:0;line-height:1.02;letter-spacing:-.02em;text-transform:uppercase}
+h1{font-size:clamp(2.5rem,8.5vw,5.6rem);font-weight:500;max-width:15ch}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:500}
+h3{font-size:1.15rem;font-weight:700;line-height:1.15}
+.hero{padding:3.5rem 0 4rem;display:grid;gap:2.5rem;grid-template-columns:1.6fr 1fr;align-items:end}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.tagline{display:inline-block;color:var(--accent);border-left:3px solid var(--accent);padding-left:.7rem;margin-bottom:1.4rem}
+.lead{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:1.5rem 0 1.8rem}
+.btn{display:inline-block;padding:.85rem 1.3rem;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);margin-left:.5rem}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.status{background:var(--panel);border:1px solid var(--line);padding:1.2rem}
+.status dl{margin:.8rem 0 0}.status dt{margin-top:.8rem}.status dd{margin:.1rem 0 0;font-weight:500}
+.dot{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--accent);margin-right:.5rem}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.sh h2 span{color:var(--accent);font-family:var(--mono);font-size:.9rem;margin-right:.7rem;vertical-align:middle}
+.about{display:grid;grid-template-columns:1fr 1.5fr;gap:1.25rem}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+.nums{background:var(--warm);color:var(--ink);padding:1.6rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.nums b{display:block;font-size:clamp(3rem,7vw,4.6rem);font-weight:500;line-height:1}
+.nums .mono{color:inherit;opacity:.75}
+.stack{display:grid;gap:1.25rem}
+.panel{background:var(--panel);border:1px solid var(--line);padding:1.3rem}
+.panel p{margin:.6rem 0 0}
+.panel.em{border-left:3px solid var(--accent)}
+.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))}
+.work{background:var(--card);border:1px solid var(--line);padding:1.6rem;display:flex;flex-direction:column;gap:.9rem}
+.work.dark{background:var(--inv);color:var(--inv-ink);border-color:var(--inv)}
+.work.dark .mono{color:inherit;opacity:.75}
+.work p{margin:0;color:var(--muted)}.work.dark p{color:inherit;opacity:.85}
+.work.soon{background:transparent;border-style:dashed}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;padding-top:.6rem}
+.chips span{font-family:var(--mono);font-size:.78rem;border:1px solid currentColor;padding:.15rem .5rem;opacity:.85}
+.pillars{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.pillar{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);padding:1.4rem}
+.pillar ol{list-style:none;margin:1rem 0 0;padding:0}
+.pillar li{padding:.55rem 0;border-top:1px solid var(--line);display:flex;gap:.8rem}
+.pillar li::before{content:attr(data-n);font-family:var(--mono);font-size:.78rem;color:var(--accent);padding-top:.2rem}
+.quote{margin-top:1.25rem}
+.contact{display:grid;grid-template-columns:1.4fr 1fr;gap:1.25rem}
+@media(max-width:820px){.contact{grid-template-columns:1fr}}
+.mail{display:inline-block;font-size:clamp(1.1rem,3.6vw,1.7rem);font-weight:500;margin:.4rem 0 0;overflow-wrap:anywhere}
+footer{padding:1.6rem 0 2.5rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(prefers-reduced-motion:no-preference){.hero>*{animation:up .6s ease both}.hero>*:nth-child(2){animation-delay:.15s}@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="logo" href="#">Xavier Brigode</a>
+  <nav aria-label="Navigation principale">
+    <a href="#apropos">À propos</a><a href="#realisations">Réalisations</a><a href="#competences">Compétences</a><a class="keep" href="#contact">Contact</a>
+    <button class="theme" id="theme" type="button" aria-label="Passer en mode sombre"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </nav>
+</header>
+<main>
+  <div class="hero">
+    <div>
+      <span class="mono tagline">Web designer + développeur front-end</span>
+      <h1>Je dessine le site, puis je le code.</h1>
+      <p class="lead">Je suis Xavier. Je conçois la maquette et je la développe moi-même, pour que votre site ressemble vraiment à votre projet.</p>
+      <p><a class="btn" href="#contact">Me contacter</a><a class="btn ghost" href="#realisations">Voir mes réalisations</a></p>
+    </div>
+    <aside class="status" aria-label="En bref">
+      <span class="mono"><span class="dot" aria-hidden="true"></span>Ouvert aux opportunités</span>
+      <dl>
+        <dt class="mono">Zone</dt><dd>Brabant wallon & Bruxelles</dd>
+        <dt class="mono">Pour qui</dt><dd>Artisans, indépendants, PME, agences</dd>
+        <dt class="mono">Outils</dt><dd>Figma, Adobe, Angular, JavaScript</dd>
+      </dl>
+    </aside>
+  </div>
+
+  <section id="apropos">
+    <div class="sh"><h2><span>01</span>À propos</h2><span class="mono">Parcours</span></div>
+    <div class="about">
+      <div class="nums">
+        <div><b>2022</b><span class="mono">Reconversion dans le web</span></div>
+        <div><b>3 ans</b><span class="mono">En startup, en CDI</span></div>
+      </div>
+      <div class="stack">
+        <div class="panel"><span class="mono">Expérience</span><p>Je me suis reconverti dans le web en 2022 et j’ai passé trois ans en CDI dans une startup, à concevoir et à développer des interfaces au sein d’une petite équipe.</p></div>
+        <div class="panel"><span class="mono">Façon de travailler</span><p>Je suis à l’aise de Figma jusqu’au code front-end. J’utilise l’IA comme un outil pour avancer plus vite, et je garde la main sur le design, la qualité et les choix techniques.</p></div>
+        <div class="panel em"><span class="mono">Ce que je cherche</span><p><strong>Des projets où l’on a besoin de quelqu’un qui comprend à la fois l’image et le code : petites agences, indépendants, artisans et PME.</strong></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="realisations">
+    <div class="sh"><h2><span>02</span>Réalisations</h2><span class="mono">Travaux sélectionnés</span></div>
+    <div class="grid">
+      <article class="work">
+        <span class="mono">Startup · trois ans en CDI</span>
+        <h3>Interfaces et sites web</h3>
+        <p>Conception et développement front-end au sein d’une petite équipe : de la maquette à la mise en ligne, avec des livraisons régulières.</p>
+        <div class="chips"><span>Figma</span><span>Front-end</span><span>Mise en ligne</span></div>
+      </article>
+      <article class="work soon">
+        <span class="mono">Projet de démonstration · en cours</span>
+        <h3>Site vitrine pour un artisan</h3>
+        <p>Un site imaginé pour un artisan local : présentation, galerie de réalisations, horaires et demande de devis.</p>
+        <div class="chips"><span>Maquette</span><span>Responsive</span></div>
+      </article>
+      <article class="work soon">
+        <span class="mono">Projet de démonstration · en cours</span>
+        <h3>Site pour un commerce local</h3>
+        <p>Un second site pensé pour une petite entreprise : clair, rapide sur mobile et facile à mettre à jour.</p>
+        <div class="chips"><span>Maquette</span><span>Développement</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="sh"><h2><span>03</span>Compétences</h2><span class="mono">Outils et méthode</span></div>
+    <div class="pillars">
+      <div class="pillar"><h3>Design</h3><ol><li data-n="01">Figma, maquettes et prototypes</li><li data-n="02">Suite Adobe</li><li data-n="03">Logiciels 3D</li><li data-n="04">Identité visuelle et typographie</li><li data-n="05">Design responsive</li></ol></div>
+      <div class="pillar"><h3>Développement front-end</h3><ol><li data-n="01">HTML, CSS, JavaScript</li><li data-n="02">Angular</li><li data-n="03">React (bases)</li><li data-n="04">Tailwind CSS</li><li data-n="05">Intégration de maquettes</li></ol></div>
+      <div class="pillar"><h3>Méthode</h3><ol><li data-n="01">Wireframes et mockups</li><li data-n="02">Développement</li><li data-n="03">Mise en production</li><li data-n="04">Git et GitHub</li><li data-n="05">IA comme outil de productivité</li></ol></div>
+    </div>
+    <div class="panel em quote"><span class="mono">Un seul interlocuteur</span><p>La personne qui dessine votre site est aussi celle qui le développe : pas de perte entre la maquette et le résultat.</p></div>
+  </section>
+
+  <section id="contact">
+    <div class="sh"><h2><span>04</span>Parlons de votre projet</h2><span class="mono">Contact</span></div>
+    <div class="contact">
+      <div class="panel">
+        <p style="margin-top:0">Un site à créer ou à refaire, une idée à concrétiser, une question sur ce que je fais : écrivez-moi, je réponds rapidement.</p>
+        <span class="mono">Courriel</span><br>
+        <a class="mail" href="mailto:ipsum.dolores@gmail.com">ipsum.dolores@gmail.com</a>
+      </div>
+      <div class="status">
+        <span class="mono">En pratique</span>
+        <dl><dt class="mono">Rôle</dt><dd>Web designer et développeur front-end</dd><dt class="mono">Zone</dt><dd>Brabant wallon & Bruxelles</dd></dl>
+        <p><a class="btn" href="mailto:ipsum.dolores@gmail.com">Envoyer un message</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><span class="mono">© 2026 Xavier Brigode</span><span class="mono">Site conçu et développé par mes soins</span></footer>
+</div>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  var MOON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  var SUN='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  function apply(m){
+    if(m==='dark'){root.setAttribute('data-theme','dark');btn.innerHTML=SUN;btn.setAttribute('aria-label','Passer en mode clair');}
+    else{root.removeAttribute('data-theme');btn.innerHTML=MOON;btn.setAttribute('aria-label','Passer en mode sombre');}
+  }
+  var saved=null;try{saved=localStorage.getItem('theme');}catch(e){}
+  apply(saved==='dark'?'dark':'light');
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    apply(next);try{localStorage.setItem('theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
